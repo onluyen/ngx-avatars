@@ -8,7 +8,7 @@ import { SafeUrl } from '@angular/platform-browser';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: false
+    standalone: true
 })
 export class AppComponent implements OnInit {
   userName = 'Haithem Mosbahi';

@@ -63,7 +63,7 @@ type Style = Partial<CSSStyleDeclaration>;
           </ng-template>
       </div>
   `,
-    standalone: false
+    standalone: true
 })
 export class AvatarComponent implements OnChanges, OnDestroy {
   @Input()

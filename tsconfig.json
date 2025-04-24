@@ -15,13 +15,13 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "ES2022",
+    "target": "ES2024",
     "strictNullChecks": true,
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "es2022",
+      "ES2024",
       "dom"
     ],
     "paths": {
