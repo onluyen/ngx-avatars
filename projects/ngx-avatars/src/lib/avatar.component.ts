@@ -16,6 +16,7 @@ import {AvatarService} from './avatar.service';
 import {AvatarSource} from './sources/avatar-source.enum';
 import {takeWhile, map} from 'rxjs/operators';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import {NgStyle} from "@angular/common";
 
 type Style = Partial<CSSStyleDeclaration>;
 
@@ -29,41 +30,44 @@ type Style = Partial<CSSStyleDeclaration>;
  */
 
 @Component({
-    // tslint:disable-next-line:component-selector
-    selector: 'ngx-avatars',
-    styles: [
-        `
-        :host {
-            border-radius: 50%;
-        }
+  // tslint:disable-next-line:component-selector
+  selector: 'ngx-avatars',
+  styles: [
     `
-    ],
-    template: `
-      <div
-              (click)="onAvatarClicked()"
-              class="avatar-container"
-              [ngStyle]="hostStyle"
-      >
-          <img
-                  *ngIf="avatarSrc; else textAvatar"
-                  [src]="avatarSrc"
-                  [alt]="(customAlt)? customAlt: avatarAlt"
-                  [width]="size"
-                  [height]="size"
-                  [ngStyle]="avatarStyle"
-                  [attr.referrerPolicy]="referrerpolicy"
-                  (error)="fetchAvatarSource()"
-                  class="avatar-content"
-                  loading="lazy"
-          />
-          <ng-template #textAvatar>
-              <div *ngIf="avatarText" class="avatar-content" [ngStyle]="avatarStyle">
-                  {{ avatarText }}
-              </div>
-          </ng-template>
-      </div>
+      :host {
+        border-radius: 50%;
+      }
+    `
+  ],
+  template: `
+    <div
+        (click)="onAvatarClicked()"
+        class="avatar-container"
+        [ngStyle]="hostStyle"
+    >
+      <img
+          *ngIf="avatarSrc; else textAvatar"
+          [src]="avatarSrc"
+          [alt]="(customAlt)? customAlt: avatarAlt"
+          [width]="size"
+          [height]="size"
+          [ngStyle]="avatarStyle"
+          [attr.referrerPolicy]="referrerpolicy"
+          (error)="fetchAvatarSource()"
+          class="avatar-content"
+          loading="lazy"
+      />
+      <ng-template #textAvatar>
+        <div *ngIf="avatarText" class="avatar-content" [ngStyle]="avatarStyle">
+          {{ avatarText }}
+        </div>
+      </ng-template>
+    </div>
   `,
-    standalone: true
+  imports: [
+    NgStyle
+  ],
+  standalone: true
 })
 export class AvatarComponent implements OnChanges, OnDestroy {
   @Input()

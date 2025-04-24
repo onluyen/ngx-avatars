@@ -9,8 +9,8 @@ import { AVATAR_CONFIG } from './avatar-config.token';
 import { AvatarConfigService } from './avatar-config.service';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [AvatarComponent],
+  imports: [CommonModule, AvatarComponent],
+  declarations: [],
   providers: [SourceFactory, AvatarService, AvatarConfigService],
   exports: [AvatarComponent]
 })
