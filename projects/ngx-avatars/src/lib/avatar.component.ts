@@ -29,16 +29,16 @@ type Style = Partial<CSSStyleDeclaration>;
  */
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'ngx-avatars',
-  styles: [
-    `
+    // tslint:disable-next-line:component-selector
+    selector: 'ngx-avatars',
+    styles: [
+        `
         :host {
             border-radius: 50%;
         }
     `
-  ],
-  template: `
+    ],
+    template: `
       <div
               (click)="onAvatarClicked()"
               class="avatar-container"
@@ -51,7 +51,7 @@ type Style = Partial<CSSStyleDeclaration>;
                   [width]="size"
                   [height]="size"
                   [ngStyle]="avatarStyle"
-                  [referrerPolicy]="referrerpolicy"
+                  [attr.referrerPolicy]="referrerpolicy"
                   (error)="fetchAvatarSource()"
                   class="avatar-content"
                   loading="lazy"
@@ -62,7 +62,8 @@ type Style = Partial<CSSStyleDeclaration>;
               </div>
           </ng-template>
       </div>
-  `
+  `,
+    standalone: false
 })
 export class AvatarComponent implements OnChanges, OnDestroy {
   @Input()
