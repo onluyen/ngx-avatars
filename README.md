@@ -242,6 +242,21 @@ export class AppModule { }
 
 ```
 
+Here's an example on how to import the `AvatarComponent` directly into your `standalone` component.
+
+```typescript
+import { Component } from '@angular/core';
+import { AvatarComponent } from 'ngx-avatars';
+
+@Component({
+  selector: 'app',
+  template: '<ngx-avatars></ngx-avatars>',
+  imports: [AvatarComponent],
+  standalone: false // this is no longer needed in Angular 19+ since it defaults to `false`
+})
+export class AppComponent {}
+```
+
  **Avatar Styling**
 
  In addition to the style attribute, ngx-avatar style can be customized using css classes. Thus, the generated code offers two css classes that can be overridden :
