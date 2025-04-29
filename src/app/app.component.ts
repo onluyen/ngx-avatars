@@ -3,11 +3,18 @@ import { UserService } from './user.service';
 import { Source } from '../../projects/ngx-avatars/src/lib/sources/source';
 import { Observable } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
+import {AsyncPipe, NgForOf} from "@angular/common";
+import {AvatarComponent} from "ngx-avatars";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    imports: [
+        AsyncPipe,
+        AvatarComponent,
+        NgForOf
+    ],
     standalone: true
 })
 export class AppComponent implements OnInit {
