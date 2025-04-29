@@ -16,7 +16,7 @@ import {AvatarService} from './avatar.service';
 import {AvatarSource} from './sources/avatar-source.enum';
 import {takeWhile, map} from 'rxjs/operators';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import {NgStyle} from "@angular/common";
+import {NgStyle, NgIf, NgTemplateOutlet} from "@angular/common";
 
 type Style = Partial<CSSStyleDeclaration>;
 
@@ -65,7 +65,9 @@ type Style = Partial<CSSStyleDeclaration>;
     </div>
   `,
   imports: [
-    NgStyle
+    NgStyle,
+    NgIf,
+    NgTemplateOutlet
   ],
   standalone: true
 })
