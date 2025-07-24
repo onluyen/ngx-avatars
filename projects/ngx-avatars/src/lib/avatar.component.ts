@@ -9,14 +9,14 @@ import {
   SecurityContext
 } from '@angular/core';
 
-import {Source} from './sources/source';
-import {AsyncSource} from './sources/async-source';
-import {SourceFactory} from './sources/source.factory';
-import {AvatarService} from './avatar.service';
-import {AvatarSource} from './sources/avatar-source.enum';
-import {takeWhile, map} from 'rxjs/operators';
+import { Source } from './sources/source';
+import { AsyncSource } from './sources/async-source';
+import { SourceFactory } from './sources/source.factory';
+import { AvatarService } from './avatar.service';
+import { AvatarSource } from './sources/avatar-source.enum';
+import { takeWhile, map } from 'rxjs/operators';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import {NgStyle, NgIf, NgTemplateOutlet} from "@angular/common";
+import { CommonModule } from "@angular/common";
 
 type Style = Partial<CSSStyleDeclaration>;
 
@@ -65,9 +65,7 @@ type Style = Partial<CSSStyleDeclaration>;
     </div>
   `,
   imports: [
-    NgStyle,
-    NgIf,
-    NgTemplateOutlet
+    CommonModule
   ],
   standalone: true
 })
