@@ -277,7 +277,7 @@ export class AppComponent {}
  ```
 
 ## Release Notes & History
-* 2.0.0: Migrate to Angular V20
+* 1.10.0: Migrate to Angular V20
 * 1.9.0: Migrate to Angular V19
 * 1.8.0: Migrate to Angular V18
 * 1.7.0: Migrate to Angular V17
