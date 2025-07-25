@@ -20,7 +20,7 @@
     "build": "ng build --configuration production",
     "build-lib": "ng build ngx-avatars --configuration production",
     "postbuild": "node scripts/copy-artifacts.js",
-    "postinstall": "husky install",
+    "postinstall": "husky init",
     "deploy": "cd dist/ngx-avatars && npm publish",
     "test": "ng test",
     "lint": "ng lint",

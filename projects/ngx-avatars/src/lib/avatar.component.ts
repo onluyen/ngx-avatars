@@ -1,13 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges,
-  OnDestroy,
-  SecurityContext
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnDestroy, SecurityContext, inject } from '@angular/core';
 
 import { Source } from './sources/source';
 import { AsyncSource } from './sources/async-source';
@@ -16,7 +7,7 @@ import { AvatarService } from './avatar.service';
 import { AvatarSource } from './sources/avatar-source.enum';
 import { takeWhile, map } from 'rxjs/operators';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { CommonModule } from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 
 type Style = Partial<CSSStyleDeclaration>;
 
@@ -30,7 +21,6 @@ type Style = Partial<CSSStyleDeclaration>;
  */
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'ngx-avatars',
   styles: [
     `
@@ -45,31 +35,38 @@ type Style = Partial<CSSStyleDeclaration>;
         class="avatar-container"
         [ngStyle]="hostStyle"
     >
-      <img
-          *ngIf="avatarSrc; else textAvatar"
-          [src]="avatarSrc"
-          [alt]="(customAlt)? customAlt: avatarAlt"
-          [width]="size"
-          [height]="size"
-          [ngStyle]="avatarStyle"
-          [attr.referrerPolicy]="referrerpolicy"
-          (error)="fetchAvatarSource()"
-          class="avatar-content"
-          loading="lazy"
-      />
-      <ng-template #textAvatar>
-        <div *ngIf="avatarText" class="avatar-content" [ngStyle]="avatarStyle">
-          {{ avatarText }}
-        </div>
-      </ng-template>
+      @if (avatarSrc; as src) {
+        <img
+            [ngSrc]="src"
+            [alt]="customAlt ? customAlt : avatarAlt"
+            [width]="size"
+            [height]="size"
+            [ngStyle]="avatarStyle"
+            [attr.referrerPolicy]="referrerpolicy"
+            (error)="fetchAvatarSource()"
+            class="avatar-content"
+            loading="lazy"
+        />
+      } @else {
+        @if (avatarText) {
+          <div class="avatar-content" [ngStyle]="avatarStyle">
+            {{ avatarText }}
+          </div>
+        }
+      }
     </div>
   `,
   imports: [
-    CommonModule
+    CommonModule,
+    NgOptimizedImage
   ],
   standalone: true
 })
 export class AvatarComponent implements OnChanges, OnDestroy {
+  sourceFactory = inject(SourceFactory);
+  private avatarService = inject(AvatarService);
+  private sanitizer = inject(DomSanitizer);
+
   @Input()
   public round = true;
   @Input()
@@ -130,11 +127,7 @@ export class AvatarComponent implements OnChanges, OnDestroy {
   private currentIndex = -1;
   private sources: Source[] = [];
 
-  constructor(
-    public sourceFactory: SourceFactory,
-    private avatarService: AvatarService,
-    private sanitizer: DomSanitizer
-  ) {
+  constructor() {
   }
 
   public onAvatarClicked(): void {

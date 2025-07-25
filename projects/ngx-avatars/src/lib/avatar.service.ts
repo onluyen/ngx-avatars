@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
@@ -48,15 +48,15 @@ export const defaultDisableSrcCache = false;
  */
 @Injectable({providedIn: 'root'})
 export class AvatarService {
+  private http = inject(HttpClient);
+  private avatarConfigService = inject(AvatarConfigService);
+
   public avatarSources: AvatarSource[] = defaultSources;
   public avatarColors: string[] = defaultColors;
 
   private readonly failedSources = new Map<string, Source>();
 
-  constructor(
-    private http: HttpClient,
-    private avatarConfigService: AvatarConfigService
-  ) {
+  constructor() {
     this.overrideAvatarSources();
     this.overrideAvatarColors();
   }

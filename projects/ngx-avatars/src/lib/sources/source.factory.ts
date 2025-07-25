@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Source } from './source';
 import { Facebook } from './facebook';
 import { Twitter } from './twitter';
@@ -26,7 +26,12 @@ import { CustomNoCache } from './custom-no-cache';
 export class SourceFactory {
   private sources: { [key: string]: SourceCreator } = {};
 
-  constructor(avatarConfigService: AvatarConfigService) {
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() {
+    const avatarConfigService = inject(AvatarConfigService);
+
     const disableSrcCache = avatarConfigService.getDisableSrcCache(defaultDisableSrcCache);
     this.sources[AvatarSource.FACEBOOK] = Facebook;
     this.sources[AvatarSource.TWITTER] = Twitter;

@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from './user.service';
 import { Source } from '../../projects/ngx-avatars/src/lib/sources/source';
 import { Observable } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
-import {AsyncPipe, NgForOf} from "@angular/common";
+import {AsyncPipe} from "@angular/common";
 import {AvatarComponent} from "ngx-avatars";
 
 @Component({
-    selector: 'app-root',
+    selector: 'lib-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     imports: [
         AsyncPipe,
-        AvatarComponent,
-        NgForOf
+        AvatarComponent
     ],
     standalone: true
 })
 export class AppComponent implements OnInit {
+  private userService = inject(UserService);
+
   userName = 'Haithem Mosbahi';
   userFB = 'wrongId';
   alt='Haithem Mosbahi'
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
 
   safeUrlPicture$ : Observable<SafeUrl | null> = this.userService.getPictureAsSafeUrl();
 
-  constructor(private userService: UserService) {}
+  constructor() {}
 
   ngOnInit() {
     this.userService.fetchInformation().subscribe(user => {

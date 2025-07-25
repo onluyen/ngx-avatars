@@ -1,4 +1,4 @@
-import { Injectable, Inject, Optional } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { AvatarSource } from './sources/avatar-source.enum';
 import { AVATAR_CONFIG } from './avatar-config.token';
@@ -6,11 +6,9 @@ import { AvatarConfig } from './avatar-config';
 
 @Injectable({providedIn: 'root'})
 export class AvatarConfigService {
-  constructor(
-    @Optional()
-    @Inject(AVATAR_CONFIG)
-    public userConfig: AvatarConfig
-  ) {}
+  userConfig = inject<AvatarConfig>(AVATAR_CONFIG, { optional: true })!;
+
+  constructor() {}
 
   public getAvatarSources(defaultSources: AvatarSource[]): AvatarSource[] {
     if (

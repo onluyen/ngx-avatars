@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './user.model';
@@ -10,8 +10,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
  */
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient,
-    private sanitizer: DomSanitizer) { }
+  private http = inject(HttpClient);
+  private sanitizer = inject(DomSanitizer);
+
+  constructor() { }
 
   fetchInformation(): Observable<User> {
     return this.http.get('assets/data/data.json').pipe(

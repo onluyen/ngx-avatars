@@ -2,20 +2,28 @@ import { AvatarConfigService } from './avatar-config.service';
 import { AvatarSource } from './sources/avatar-source.enum';
 import { AvatarConfig } from './avatar-config';
 import { defaultSources, defaultColors, defaultDisableSrcCache } from './avatar.service';
+import {AVATAR_CONFIG} from "./avatar-config.token";
+import {TestBed} from "@angular/core/testing";
 
 describe('AvatarConfigService', () => {
   describe('AvatarSources', () => {
     it('should return the list of sources with the default order when the user provides an empty list of sources', () => {
       const userConfig: AvatarConfig = { sourcePriorityOrder: [] };
-      const avatarConfigService = new AvatarConfigService(userConfig);
+      TestBed.configureTestingModule({
+        providers: [
+          AvatarConfigService,
+          { provide: AVATAR_CONFIG, useValue: userConfig }
+        ]
+      });
 
+      const avatarConfigService = TestBed.inject(AvatarConfigService);
       expect(avatarConfigService.getAvatarSources(defaultSources)).toEqual(
         defaultSources
       );
     });
 
     it('should return the list of sources with the default order when the user does not provide a custom avatar configuration', () => {
-      const avatarConfigService = new AvatarConfigService({});
+      const avatarConfigService = TestBed.inject(AvatarConfigService);
 
       expect(avatarConfigService.getAvatarSources(defaultSources)).toEqual(
         defaultSources
@@ -26,8 +34,14 @@ describe('AvatarConfigService', () => {
       const userConfig: AvatarConfig = {
         sourcePriorityOrder: ['UNKNOWN_SOURCE' as AvatarSource]
       };
-      const avatarConfigService = new AvatarConfigService(userConfig);
+      TestBed.configureTestingModule({
+        providers: [
+          AvatarConfigService,
+          { provide: AVATAR_CONFIG, useValue: userConfig }
+        ]
+      });
 
+      const avatarConfigService = TestBed.inject(AvatarConfigService);
       expect(avatarConfigService.getAvatarSources(defaultSources)).toEqual(
         defaultSources
       );
@@ -37,7 +51,15 @@ describe('AvatarConfigService', () => {
       const userConfig: AvatarConfig = {
         sourcePriorityOrder: [AvatarSource.INITIALS, AvatarSource.TWITTER]
       };
-      const avatarConfigService = new AvatarConfigService(userConfig);
+
+      TestBed.configureTestingModule({
+        providers: [
+          AvatarConfigService,
+          { provide: AVATAR_CONFIG, useValue: userConfig }
+        ]
+      });
+
+      const avatarConfigService = TestBed.inject(AvatarConfigService);
 
       const expectedSourcesOrder = [
         AvatarSource.INITIALS,
@@ -61,8 +83,15 @@ describe('AvatarConfigService', () => {
       const userConfig: AvatarConfig = {
         sourcePriorityOrder: [AvatarSource.INITIALS, AvatarSource.INITIALS]
       };
-      const avatarConfigService = new AvatarConfigService(userConfig);
 
+      TestBed.configureTestingModule({
+        providers: [
+          AvatarConfigService,
+          { provide: AVATAR_CONFIG, useValue: userConfig }
+        ]
+      });
+
+      const avatarConfigService = TestBed.inject(AvatarConfigService);
       const expectedSourcesOrder = [
         AvatarSource.INITIALS,
         AvatarSource.FACEBOOK,
@@ -89,15 +118,21 @@ describe('AvatarConfigService', () => {
         colors: userColors
       };
 
-      const avatarConfigService = new AvatarConfigService(userConfig);
+      TestBed.configureTestingModule({
+        providers: [
+          AvatarConfigService,
+          { provide: AVATAR_CONFIG, useValue: userConfig }
+        ]
+      });
 
+      const avatarConfigService = TestBed.inject(AvatarConfigService);
       expect(avatarConfigService.getAvatarColors(defaultColors)).toBe(
         userColors
       );
     });
 
     it('should return the default colors when no colors are provided in the avatar configuration', () => {
-      const avatarConfigService = new AvatarConfigService({});
+      const avatarConfigService = TestBed.inject(AvatarConfigService);
 
       expect(avatarConfigService.getAvatarColors(defaultColors)).toBe(
         defaultColors
@@ -113,15 +148,21 @@ describe('AvatarDisableCache', () => {
       disableSrcCache: userDisableSrcCache
     };
 
-    const avatarConfigService = new AvatarConfigService(userConfig);
+    TestBed.configureTestingModule({
+      providers: [
+        AvatarConfigService,
+        { provide: AVATAR_CONFIG, useValue: userConfig }
+      ]
+    });
 
+    const avatarConfigService = TestBed.inject(AvatarConfigService);
     expect(avatarConfigService.getDisableSrcCache(defaultDisableSrcCache)).toBe(
       userDisableSrcCache
     );
   });
 
   it('should return the default disable custom source cache settings when no settings are provided in the avatar configuration', () => {
-    const avatarConfigService = new AvatarConfigService({});
+    const avatarConfigService = TestBed.inject(AvatarConfigService);
 
     expect(avatarConfigService.getDisableSrcCache(defaultDisableSrcCache)).toBe(
       defaultDisableSrcCache
