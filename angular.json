@@ -3,7 +3,7 @@
   "version": 1,
   "cli": {
     "analytics": "1c209c8f-e553-45c3-b475-c1943e1d601f",
-    "packageManager": "yarn",
+    "packageManager": "npm",
     "schematicCollections": ["@angular-eslint/schematics"]
   },
   "newProjectRoot": "projects",
@@ -101,13 +101,7 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "main": ["src/test.ts"],
-            "polyfills": ["src/polyfills.ts"],
-            "tsConfig": "src/tsconfig.spec.json",
-            "styles": ["src/styles.scss"],
-            "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"],
-            "watch": false
+            "zoneless": false
           }
         },
         "lint": {
@@ -158,9 +152,7 @@
         "test": {
           "builder": "@angular-builders/jest:run",
           "options": {
-            "main": ["src/test.ts"],
-            "polyfills": ["src/polyfills.ts"],
-            "tsConfig": "src/tsconfig.spec.json"
+            "zoneless": false
           }
         },
         "lint": {

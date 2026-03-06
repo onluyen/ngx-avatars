@@ -21,7 +21,7 @@ type Style = Partial<CSSStyleDeclaration>;
  */
 
 @Component({
-  selector: 'ngx-avatars',
+  selector: 'ngx-avatars-advanced',
   styles: [
     `
       :host {

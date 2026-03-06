@@ -1,63 +1,73 @@
 <div>
-    <h2>Avatar from different sources</h2>
-    <ngx-avatars (clickOnAvatar)="avatarClicked($event)" facebookId="1508319875" size="70"></ngx-avatars>
-    <ngx-avatars googleId="103055244388830425867" [round]="false" size="70"></ngx-avatars>
-    <ngx-avatars twitterId="StevenWilsonHQ" [alt]="alt" size="70"></ngx-avatars>
-    <ngx-avatars vkontakteId="210700286" [round]="false" size="70"></ngx-avatars>
-    <ngx-avatars githubId="sweko" size="70"></ngx-avatars>
-    <ngx-avatars instagramId="dccomics" size="70"></ngx-avatars>
+    <h2>Simple Avatar (standalone)</h2>
+    <ngx-avatars
+            [initialsSize]="3"
+            class="ng-avatar"
+            [style]="{ cursor: 'pointer', display: 'inline-block !important' }"
+            [src]="safeUrlPicture$ | async"
+            [name]="userName"
+            size="24">
+    </ngx-avatars>
+
+    <h2>Avatar from different sources (advanced)</h2>
+    <ngx-avatars-advanced (clickOnAvatar)="avatarClicked($event)" facebookId="1508319875" size="70"></ngx-avatars-advanced>
+    <ngx-avatars-advanced googleId="103055244388830425867" [round]="false" size="70"></ngx-avatars-advanced>
+    <ngx-avatars-advanced twitterId="StevenWilsonHQ" [alt]="alt" size="70"></ngx-avatars-advanced>
+    <ngx-avatars-advanced vkontakteId="210700286" [round]="false" size="70"></ngx-avatars-advanced>
+    <ngx-avatars-advanced githubId="sweko" size="70"></ngx-avatars-advanced>
+    <ngx-avatars-advanced instagramId="dccomics" size="70"></ngx-avatars-advanced>
 
     <!-- use facebook as avatar source, if it fails, it will use twitter -->
-    <ngx-avatars facebookId="15349439434" twitterId="StevenWilsonHQ" size="70"></ngx-avatars>
-    <ngx-avatars skypeId="echo" size="70"></ngx-avatars>
-    <ngx-avatars gravatarId="elmosbahihaithem@gmail.com" size="70"></ngx-avatars>
-    <ngx-avatars gravatarId="adde9b2b981a8083cf084c63ad86f753" size="70"></ngx-avatars>
+    <ngx-avatars-advanced facebookId="15349439434" twitterId="StevenWilsonHQ" size="70"></ngx-avatars-advanced>
+    <ngx-avatars-advanced skypeId="echo" size="70"></ngx-avatars-advanced>
+    <ngx-avatars-advanced gravatarId="elmosbahihaithem@gmail.com" size="70"></ngx-avatars-advanced>
+    <ngx-avatars-advanced gravatarId="adde9b2b981a8083cf084c63ad86f753" size="70"></ngx-avatars-advanced>
     <!-- use gravatar as source, if it fails, it will use a fallback image -->
-    <ngx-avatars gravatarId="adde9b2b981a8083cf084c63aQDQSDQSDd86f753" src="assets/img/avatar.jpg"
-                 size="70"></ngx-avatars>
+    <ngx-avatars-advanced gravatarId="adde9b2b981a8083cf084c63aQDQSDQSDd86f753" src="assets/img/avatar.jpg"
+                 size="70"></ngx-avatars-advanced>
 
     <br>
     <h2>Avatar with fallback</h2>
 
     <!-- Avatar with multiple sources -->
-    <ngx-avatars facebookId="invalidFBId" twitterId="invalidTwitterHandle"
+    <ngx-avatars-advanced facebookId="invalidFBId" twitterId="invalidTwitterHandle"
                  gravatarId="invalidGravatarId"
                  name="Steven Wilson"
-                 (clickOnAvatar)="avatarClicked($event)" size="70"></ngx-avatars>
+                 (clickOnAvatar)="avatarClicked($event)" size="70"></ngx-avatars-advanced>
 
     <br><br>
 
     <h2>Initials & Value Avatar</h2>
 
-    <ngx-avatars bgColor="red" fgColor="black" size="50" name="Steven Wilson" value="75%"></ngx-avatars>
-    <ngx-avatars size="50" name="Haithem Mosbahi"></ngx-avatars>
-    <ngx-avatars size="50" name="John Doe"></ngx-avatars>
-    <ngx-avatars size="50" name="Maikeal Akerfekdt"></ngx-avatars>
-    <ngx-avatars size="50" name="Hubert Wolfeschlegelsteinhausenbergerdorff"></ngx-avatars>
-    <ngx-avatars size="50" name="Haithem Mosbahi"></ngx-avatars>
+    <ngx-avatars-advanced bgColor="red" fgColor="black" size="50" name="Steven Wilson" value="75%"></ngx-avatars-advanced>
+    <ngx-avatars-advanced size="50" name="Haithem Mosbahi"></ngx-avatars-advanced>
+    <ngx-avatars-advanced size="50" name="John Doe"></ngx-avatars-advanced>
+    <ngx-avatars-advanced size="50" name="Maikeal Akerfekdt"></ngx-avatars-advanced>
+    <ngx-avatars-advanced size="50" name="Hubert Wolfeschlegelsteinhausenbergerdorff"></ngx-avatars-advanced>
+    <ngx-avatars-advanced size="50" name="Haithem Mosbahi"></ngx-avatars-advanced>
 
     <br><br>
-    <ngx-avatars size="40" value="75%"></ngx-avatars>
-    <ngx-avatars size="40" initialsSize="2" cornerRadius="4" [round]="false" name="Opeth Junior A"></ngx-avatars>
-    <ngx-avatars size="40" value="1"></ngx-avatars>
-    <ngx-avatars size="40" borderColor="#000" [round]="false" value="10"></ngx-avatars>
+    <ngx-avatars-advanced size="40" value="75%"></ngx-avatars-advanced>
+    <ngx-avatars-advanced size="40" initialsSize="2" cornerRadius="4" [round]="false" name="Opeth Junior A"></ngx-avatars-advanced>
+    <ngx-avatars-advanced size="40" value="1"></ngx-avatars-advanced>
+    <ngx-avatars-advanced size="40" borderColor="#000" [round]="false" value="10"></ngx-avatars-advanced>
 
     <h2>Asynchrounous Avatars</h2>
 
-    <ngx-avatars [style]="customStyle" size="100" [name]="userName" [facebookId]="userFB"></ngx-avatars>
+    <ngx-avatars-advanced [style]="customStyle" size="100" [name]="userName" [facebookId]="userFB"></ngx-avatars-advanced>
 
     <h2>Failed sources are not retried</h2>
 
     <button (click)="failedSources.push(failedSources.length)">Add 1 failing source</button>
     @for (i of failedSources; track i) {
         <span>
-            <ngx-avatars [name]="'failing'" gravatarId="invalid@example.com"></ngx-avatars>
+            <ngx-avatars-advanced [name]="'failing'" gravatarId="invalid@example.com"></ngx-avatars-advanced>
         </span>
     }
 
     <h2>SafeUrl Avatars</h2>
     <!-- use an Observable<SafeUrl | null> as source:-->
-    <ngx-avatars [src]="safeUrlPicture$ | async" size="70"></ngx-avatars>
+    <ngx-avatars-advanced [src]="safeUrlPicture$ | async" size="70"></ngx-avatars-advanced>
 
 </div>
 

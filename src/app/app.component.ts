@@ -4,7 +4,8 @@ import { Source } from '../../projects/ngx-avatars/src/lib/sources/source';
 import { Observable } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
 import {AsyncPipe} from "@angular/common";
-import {AvatarComponent} from "ngx-avatars";
+import {AvatarComponent} from "../../projects/ngx-avatars/src/lib/avatar.component";
+import {SimpleAvatarComponent} from "../../projects/ngx-avatars/src/lib/simple-avatar.component";
 
 @Component({
     selector: 'lib-root',
@@ -12,7 +13,8 @@ import {AvatarComponent} from "ngx-avatars";
     styleUrls: ['./app.component.scss'],
     imports: [
         AsyncPipe,
-        AvatarComponent
+        AvatarComponent,
+        SimpleAvatarComponent
     ],
     standalone: true
 })

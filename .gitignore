@@ -16,3 +16,6 @@ typings
 src/.DS_Store
 .angular
 .husky
+
+package-lock.json
+bun.lock
